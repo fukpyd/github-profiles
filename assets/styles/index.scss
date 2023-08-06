@@ -1,0 +1,269 @@
+@use "sass:math";
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+$primary-font: "Heebo", cursive;
+$primary-bg: hsl(221, 42%, 13%);
+$secondary-bg: hsl(224, 40%, 20%);
+$search-btn: hsl(212, 99%, 50%);
+$primary-font-color: hsl(0, 0%, 100%);
+$secondary-font-color: hsl(218, 11%, 80%);
+$not-available-item-font-color: hsl(226, 13%, 45%);
+$blue-font-color: hsl(212, 91%, 40%);
+
+$base-font-size: clamp(0.525rem, 0.5345rem + 0.4172vw, 1rem);
+$font-size-sm: clamp(0.325rem, 0.3345rem + 0.4172vw, 0.7rem);
+
+$base-margin-top: 8rem;
+$base-padding: 1vw;
+
+$breakpoints: (
+  "mobile": 320px,
+  "tablet": 768px,
+  "desktop": 1024px,
+);
+
+@mixin small-mobile {
+  @media (max-width: map-get($breakpoints, "mobile")) {
+    // <= 320px    // od 0 do 320px
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: map-get($breakpoints, "tablet")) {
+    // <= 768px // od 0 do 768px
+    @content;
+  }
+}
+
+@mixin tablet-down {
+  @media (max-width: map-get($breakpoints, "desktop")) {
+    @content;
+    // <= 1024px // od 0 do 1024px
+  }
+}
+
+@mixin tablet {
+  @media (min-width: map-get($breakpoints, "tablet")) and (max-width: map-get($breakpoints, "desktop")) {
+    // >= 768px && <= 1024px
+    @content;
+  }
+}
+
+body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background-color: $primary-bg;
+  font-size: $base-font-size;
+  font-family: $primary-font;
+  min-height: 100vh;
+}
+
+.user-search-app-row {
+  margin: 1rem;
+  border-radius: 10px;
+}
+
+.first-row {
+  display: flex;
+  justify-content: space-between;
+  color: $primary-font-color;
+  background-color: $primary-bg;
+  letter-spacing: 0.5px;
+
+  .night-day-mode {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .mode-type {
+    text-transform: uppercase;
+  }
+}
+
+.second-row {
+  display: flex;
+  justify-content: space-between;
+  background-color: $secondary-bg;
+  padding: $base-padding;
+  #search-icon {
+    width: 2vw;
+    fill: $search-btn;
+  }
+  .dev-search-line {
+    display: flex;
+    gap: 0.1rem;
+    .dev-search-input {
+      color: $primary-font-color;
+      font-size: $base-font-size;
+      padding: 0.5rem;
+      background-color: transparent;
+      border: none;
+      &:focus {
+        outline: none;
+      }
+      &::placeholder {
+        color: $primary-font-color;
+      }
+    }
+  }
+  .search-user-button {
+    background-color: $search-btn;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    border: none;
+    color: $primary-font-color;
+    font-size: $base-font-size;
+  }
+}
+
+.third-row {
+  background-color: $secondary-bg;
+  padding: 1vw 3vw 1vw 1vw;
+  color: $primary-font-color;
+  display: grid;
+  grid-template-columns: 0.4fr 1fr;
+  grid-template-areas:
+    "first second"
+    "first third"
+    "first forth";
+  gap: 2px;
+
+  #octocat {
+    width: 8vw;
+  }
+
+  .user-avatar {
+    grid-area: first;
+  }
+
+  .basic-user-data-list {
+    display: grid;
+    grid-template-areas:
+      "user_name enroll_date"
+      "nick_name nick_name"
+      "bio bio";
+
+    #user-name {
+      font-size: $base-font-size;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      grid-area: user_name;
+    }
+    #nick-name {
+      color: $blue-font-color;
+      padding-bottom: 1.3vw;
+      grid-area: nick_name;
+    }
+
+    #bio {
+      letter-spacing: 1px;
+      color: $not-available-item-font-color;
+      padding-bottom: 1.3vw;
+      grid-area: bio;
+    }
+    #enroll-date {
+      grid-area: enroll_date;
+      text-align: right;
+    }
+
+    .basic-user-data-item {
+      list-style: none;
+      padding-bottom: 0.1vw;
+    }
+  }
+  .user-numeric-data-list {
+    grid-area: third;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: $primary-bg;
+    border-radius: 10px;
+  }
+  .user-numeric-data-items {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.6fr 0.2fr;
+    font-size: $font-size-sm;
+    padding: 0.1vw 1vw;
+    .user-numeric-data-title {
+      padding-top: 10px;
+    }
+    .user-numeric-data-amount {
+      font-size: $base-font-size;
+      font-weight: bold;
+      padding-bottom: 0.5vw;
+    }
+  }
+
+  .user-additional-data-list {
+    grid-area: forth;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1vw;
+    grid-auto-rows: minmax(20px, auto);
+    margin: 0.8vw 0;
+    .user-additional-data-item {
+      padding-right: 3vw;
+      .user-additional-data-info {
+        padding-left: 1vw;
+      }
+    }
+  }
+  @include tablet-down {
+    position: relative;
+    grid-template-areas:
+      "first second"
+      "third third"
+      "forth forth";
+
+    .basic-user-data-list {
+      padding-bottom: $base-padding;
+      font-size: $font-size-sm;
+      grid-template-areas:
+        "user_name"
+        "nick_name"
+        "enroll_date"
+        "bio";
+
+      .basic-user-data-item {
+        padding-bottom: 5px;
+      }
+      #enroll-date {
+        padding-bottom: 30px;
+        text-align: left;
+      }
+      #nick-name {
+        padding-bottom: 5px;
+      }
+      #bio {
+        position: absolute;
+        left: 1.5vw;
+        top: 9vw;
+      }
+    }
+    .user-additional-data-list {
+      font-size: $font-size-sm;
+    }
+  }
+
+  @include mobile {
+    .user-additional-data-list {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+svg {
+  width: 12px;
+  fill: $primary-font-color;
+}
