@@ -70,6 +70,7 @@ body {
 .user-search-app-row {
   margin: 1rem;
   border-radius: 10px;
+  max-width: 40vw;
 }
 
 .first-row {
@@ -78,6 +79,11 @@ body {
   color: $primary-font-color;
   background-color: $primary-bg;
   letter-spacing: 0.5px;
+
+  .app-heading,
+  .mode-type {
+    font-size: $base-font-size;
+  }
 
   .night-day-mode {
     display: flex;
@@ -105,7 +111,7 @@ body {
     gap: 0.1rem;
     .dev-search-input {
       color: $primary-font-color;
-      font-size: $base-font-size;
+      font-size: $font-size-sm;
       padding: 0.5rem;
       background-color: transparent;
       border: none;
@@ -123,7 +129,7 @@ body {
     border-radius: 10px;
     border: none;
     color: $primary-font-color;
-    font-size: $base-font-size;
+    font-size: $font-size-sm;
   }
 }
 .third-row {
@@ -136,7 +142,7 @@ body {
   .user-avatar {
     flex-direction: column;
     #octicon {
-      width: 6vw;
+      width: 8vw;
     }
   }
   .user-layout {
@@ -162,6 +168,7 @@ body {
           text-align: right;
         }
         #bio {
+          width: 100%;
           padding: 15px 0 10px 0;
         }
       }
@@ -169,7 +176,6 @@ body {
     .user-achievements {
       display: flex;
       justify-content: space-between;
-      gap: 15px;
       padding: $base-padding;
       background-color: $primary-bg;
       border-radius: 10px;
@@ -187,10 +193,45 @@ body {
       flex-wrap: wrap;
       color: $secondary-font-color;
       padding-top: $base-padding;
+
+      @include mobile {
+        flex-direction: column;
+      }
       .vcard-detail {
         width: 50%;
         padding: 5px 0;
       }
+    }
+  }
+
+  @include tablet-down {
+    display: block;
+    .user-layout {
+      .user-fundamentals-profile {
+        .user-fundamentals-list {
+          #user-name {
+            width: 100%;
+            order: 1;
+          }
+          #enroll-date {
+            width: 100%;
+            text-align: left;
+            order: 3;
+          }
+          #nick-name {
+            width: 100%;
+            order: 2;
+          }
+          #bio {
+            width: 100%;
+            order: 4;
+          }
+        }
+      }
+    }
+    .user-avatar {
+      float: left;
+      margin: 1vw;
     }
   }
 }
