@@ -76,118 +76,70 @@ body {
 }
 
 .third-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 1vw;
   background-color: hsl(224, 40%, 20%);
-  padding: 1vw 3vw 1vw 1vw;
+  font-size: clamp(0.325rem, 0.3345rem + 0.4172vw, 0.7rem);
   color: hsl(0, 0%, 100%);
-  display: grid;
-  grid-template-columns: 0.4fr 1fr;
-  grid-template-areas: "first second" "first third" "first forth";
-  gap: 2px;
-}
-.third-row #octocat {
-  width: 8vw;
 }
 .third-row .user-avatar {
-  grid-area: first;
+  flex-direction: column;
 }
-.third-row .basic-user-data-list {
-  display: grid;
-  grid-template-areas: "user_name enroll_date" "nick_name nick_name" "bio bio";
+.third-row .user-avatar #octicon {
+  width: 6vw;
 }
-.third-row .basic-user-data-list #user-name {
+.third-row .user-layout .user-fundamentals-profile {
+  padding-bottom: 1vw;
+}
+.third-row .user-layout .user-fundamentals-profile .user-fundamentals-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+.third-row .user-layout .user-fundamentals-profile .user-fundamentals-list .user-fundamental-item {
+  width: 50%;
+  padding-bottom: 3px;
+}
+.third-row .user-layout .user-fundamentals-profile .user-fundamentals-list #user-name {
   font-size: clamp(0.525rem, 0.5345rem + 0.4172vw, 1rem);
   font-weight: bold;
-  letter-spacing: 1.5px;
-  grid-area: user_name;
 }
-.third-row .basic-user-data-list #nick-name {
+.third-row .user-layout .user-fundamentals-profile .user-fundamentals-list #nick-name {
+  width: 100%;
   color: hsl(212, 91%, 40%);
-  padding-bottom: 1.3vw;
-  grid-area: nick_name;
 }
-.third-row .basic-user-data-list #bio {
-  letter-spacing: 1px;
-  color: hsl(226, 13%, 45%);
-  padding-bottom: 1.3vw;
-  grid-area: bio;
-}
-.third-row .basic-user-data-list #enroll-date {
-  grid-area: enroll_date;
+.third-row .user-layout .user-fundamentals-profile .user-fundamentals-list #enroll-date {
   text-align: right;
 }
-.third-row .basic-user-data-list .basic-user-data-item {
-  list-style: none;
-  padding-bottom: 0.1vw;
+.third-row .user-layout .user-fundamentals-profile .user-fundamentals-list #bio {
+  padding: 15px 0 10px 0;
 }
-.third-row .user-numeric-data-list {
-  grid-area: third;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+.third-row .user-layout .user-achievements {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 1vw;
   background-color: hsl(221, 42%, 13%);
   border-radius: 10px;
 }
-.third-row .user-numeric-data-items {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 0.6fr 0.2fr;
-  font-size: clamp(0.325rem, 0.3345rem + 0.4172vw, 0.7rem);
-  padding: 0.1vw 1vw;
+.third-row .user-layout .user-achievements .user-achievements-overview {
+  display: flex;
+  flex-direction: column;
 }
-.third-row .user-numeric-data-items .user-numeric-data-title {
-  padding-top: 10px;
-}
-.third-row .user-numeric-data-items .user-numeric-data-amount {
+.third-row .user-layout .user-achievements .user-achievements-overview .user-achievement-info {
   font-size: clamp(0.525rem, 0.5345rem + 0.4172vw, 1rem);
   font-weight: bold;
-  padding-bottom: 0.5vw;
 }
-.third-row .user-additional-data-list {
-  grid-area: forth;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1vw;
-  grid-auto-rows: minmax(20px, auto);
-  margin: 0.8vw 0;
+.third-row .user-layout .vcard-details {
+  display: flex;
+  flex-wrap: wrap;
+  color: hsl(218, 11%, 80%);
+  padding-top: 1vw;
 }
-.third-row .user-additional-data-list .user-additional-data-item {
-  padding-right: 3vw;
-}
-.third-row .user-additional-data-list .user-additional-data-item .user-additional-data-info {
-  padding-left: 1vw;
-}
-@media (max-width: 1024px) {
-  .third-row {
-    position: relative;
-    grid-template-areas: "first second" "third third" "forth forth";
-  }
-  .third-row .basic-user-data-list {
-    padding-bottom: 1vw;
-    font-size: clamp(0.325rem, 0.3345rem + 0.4172vw, 0.7rem);
-    grid-template-areas: "user_name" "nick_name" "enroll_date" "bio";
-  }
-  .third-row .basic-user-data-list .basic-user-data-item {
-    padding-bottom: 5px;
-  }
-  .third-row .basic-user-data-list #enroll-date {
-    padding-bottom: 30px;
-    text-align: left;
-  }
-  .third-row .basic-user-data-list #nick-name {
-    padding-bottom: 5px;
-  }
-  .third-row .basic-user-data-list #bio {
-    position: absolute;
-    left: 1.5vw;
-    top: 9vw;
-  }
-  .third-row .user-additional-data-list {
-    font-size: clamp(0.325rem, 0.3345rem + 0.4172vw, 0.7rem);
-  }
-}
-@media (max-width: 768px) {
-  .third-row .user-additional-data-list {
-    grid-template-columns: 1fr;
-  }
+.third-row .user-layout .vcard-details .vcard-detail {
+  width: 50%;
+  padding: 5px 0;
 }
 
 svg {

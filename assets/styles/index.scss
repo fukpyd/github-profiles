@@ -126,139 +126,71 @@ body {
     font-size: $base-font-size;
   }
 }
-
 .third-row {
+  display: flex;
+  justify-content: space-between;
+  padding: $base-padding;
   background-color: $secondary-bg;
-  padding: 1vw 3vw 1vw 1vw;
+  font-size: $font-size-sm;
   color: $primary-font-color;
-  display: grid;
-  grid-template-columns: 0.4fr 1fr;
-  grid-template-areas:
-    "first second"
-    "first third"
-    "first forth";
-  gap: 2px;
-
-  #octocat {
-    width: 8vw;
-  }
-
   .user-avatar {
-    grid-area: first;
-  }
-
-  .basic-user-data-list {
-    display: grid;
-    grid-template-areas:
-      "user_name enroll_date"
-      "nick_name nick_name"
-      "bio bio";
-
-    #user-name {
-      font-size: $base-font-size;
-      font-weight: bold;
-      letter-spacing: 1.5px;
-      grid-area: user_name;
-    }
-    #nick-name {
-      color: $blue-font-color;
-      padding-bottom: 1.3vw;
-      grid-area: nick_name;
-    }
-
-    #bio {
-      letter-spacing: 1px;
-      color: $not-available-item-font-color;
-      padding-bottom: 1.3vw;
-      grid-area: bio;
-    }
-    #enroll-date {
-      grid-area: enroll_date;
-      text-align: right;
-    }
-
-    .basic-user-data-item {
-      list-style: none;
-      padding-bottom: 0.1vw;
+    flex-direction: column;
+    #octicon {
+      width: 6vw;
     }
   }
-  .user-numeric-data-list {
-    grid-area: third;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    background-color: $primary-bg;
-    border-radius: 10px;
-  }
-  .user-numeric-data-items {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 0.6fr 0.2fr;
-    font-size: $font-size-sm;
-    padding: 0.1vw 1vw;
-    .user-numeric-data-title {
-      padding-top: 10px;
-    }
-    .user-numeric-data-amount {
-      font-size: $base-font-size;
-      font-weight: bold;
-      padding-bottom: 0.5vw;
-    }
-  }
-
-  .user-additional-data-list {
-    grid-area: forth;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1vw;
-    grid-auto-rows: minmax(20px, auto);
-    margin: 0.8vw 0;
-    .user-additional-data-item {
-      padding-right: 3vw;
-      .user-additional-data-info {
-        padding-left: 1vw;
-      }
-    }
-  }
-  @include tablet-down {
-    position: relative;
-    grid-template-areas:
-      "first second"
-      "third third"
-      "forth forth";
-
-    .basic-user-data-list {
+  .user-layout {
+    .user-fundamentals-profile {
       padding-bottom: $base-padding;
-      font-size: $font-size-sm;
-      grid-template-areas:
-        "user_name"
-        "nick_name"
-        "enroll_date"
-        "bio";
-
-      .basic-user-data-item {
-        padding-bottom: 5px;
-      }
-      #enroll-date {
-        padding-bottom: 30px;
-        text-align: left;
-      }
-      #nick-name {
-        padding-bottom: 5px;
-      }
-      #bio {
-        position: absolute;
-        left: 1.5vw;
-        top: 9vw;
+      .user-fundamentals-list {
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+        .user-fundamental-item {
+          width: 50%;
+          padding-bottom: 3px;
+        }
+        #user-name {
+          font-size: $base-font-size;
+          font-weight: bold;
+        }
+        #nick-name {
+          width: 100%;
+          color: $blue-font-color;
+        }
+        #enroll-date {
+          text-align: right;
+        }
+        #bio {
+          padding: 15px 0 10px 0;
+        }
       }
     }
-    .user-additional-data-list {
-      font-size: $font-size-sm;
+    .user-achievements {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: $base-padding;
+      background-color: $primary-bg;
+      border-radius: 10px;
+      .user-achievements-overview {
+        display: flex;
+        flex-direction: column;
+        .user-achievement-info {
+          font-size: $base-font-size;
+          font-weight: bold;
+        }
+      }
     }
-  }
-
-  @include mobile {
-    .user-additional-data-list {
-      grid-template-columns: 1fr;
+    .vcard-details {
+      display: flex;
+      flex-wrap: wrap;
+      color: $secondary-font-color;
+      padding-top: $base-padding;
+      .vcard-detail {
+        width: 50%;
+        padding: 5px 0;
+      }
     }
   }
 }
