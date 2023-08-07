@@ -6,9 +6,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="/css/assets/styles/index.css" />
-
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@400;600&family=Heebo&family=Manrope:wght@800&family=Poppins:wght@300;500&display=swap"
@@ -16,7 +13,7 @@
     <title>GitHub user search app</title>
   </head>
   <body>
-    <main class="user-search-app">
+    <main class="user-search-app-main-layout">
       <div class="user-search-app-row first-row">
         <h1 class="app-heading">devfinder</h1>
         <div class="night-day-mode">
@@ -106,7 +103,7 @@
       <div class="user-search-app-row third-row">
         <div class="user-avatar">
           <svg
-            id="octocat"
+            id="octicon"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="-0.2 -1 379 334"
           >
@@ -217,114 +214,114 @@
             />
           </svg>
         </div>
-        <div class="user_data_content">
-          <ul class="basic-user-data-list">
-            <li class="basic-user-data-item" id="user-name">The Octocat</li>
-            <li class="basic-user-data-item" id="enroll-date">
-              Joined 25 Jan 2011
-            </li>
-            <li class="basic-user-data-item" id="nick-name">@octocat</li>
-            <li class="basic-user-data-item" id="bio">
-              This profile has no bio
-            </li>
-          </ul>
-        </div>
-        <div class="user-numeric-data-list">
-          <div class="user-numeric-data-items">
-            <span class="user-numeric-data-title">Repos</span>
-            <span class="user-numeric-data-amount" id="repos">8</span>
+        <div class="user-layout">
+          <div class="user-fundamentals-profile">
+            <ul class="user-fundamentals-list">
+              <li class="user-fundamental-item" id="user-name">The Octocat</li>
+              <li class="user-fundamental-item" id="enroll-date">
+                Joined 25 Jan 2011
+              </li>
+              <li class="user-fundamental-item" id="nick-name">@octocat</li>
+              <li class="user-fundamental-item" id="bio">
+                This profile has no bio
+              </li>
+            </ul>
           </div>
-          <div class="user-numeric-data-items">
-            <span class="user-numeric-data-title">Followers</span>
-            <span class="user-numeric-data-amount" id="followers">3938</span>
+          <div class="user-achievements">
+            <div class="user-achievements-overview">
+              <span class="user-achievement-name">Repos</span>
+              <span class="user-achievement-info" id="repos">8</span>
+            </div>
+            <div class="user-achievments-overview">
+              <span class="user-achievment-name">Followers</span>
+              <span class="user-achievment-info" id="followers">3938</span>
+            </div>
+            <div class="user-achievements-overview">
+              <span class="user-achievement-name">Following</span>
+              <span class="user-achievement-info" id="following">9</span>
+            </div>
           </div>
-          <div class="user-numeric-data-items">
-            <span class="user-numeric-data-title">Following</span>
-            <span class="user-numeric-data-amount" id="following">9</span>
-          </div>
-        </div>
-        <div class="user-additional-data-list">
-          <div class="user-additional-data-item">
-            <svg
-              height="12px"
-              version="1.1"
-              viewBox="0 0 48 48"
-              width="12px"
-              xml:space="preserve"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-            >
-              <g id="Expanded">
-                <g>
+          <div class="vcard-details">
+            <div class="vcard-detail">
+              <svg
+                height="12px"
+                version="1.1"
+                viewBox="0 0 48 48"
+                width="12px"
+                xml:space="preserve"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <g id="Expanded">
                   <g>
-                    <path
-                      d="M24,47.759l-0.823-1.191C22.558,45.671,8,24.499,8,16C8,7.178,15.178,0,24,0s16,7.178,16,16     c0,8.499-14.558,29.671-15.177,30.568L24,47.759z M24,2c-7.72,0-14,6.28-14,14c0,6.787,10.885,23.555,14,28.214     C27.115,39.555,38,22.787,38,16C38,8.28,31.72,2,24,2z"
-                    />
-                  </g>
-                  <g>
-                    <path
-                      d="M24,23c-3.859,0-7-3.14-7-7s3.141-7,7-7s7,3.14,7,7S27.859,23,24,23z M24,11c-2.757,0-5,2.243-5,5s2.243,5,5,5     s5-2.243,5-5S26.757,11,24,11z"
-                    />
+                    <g>
+                      <path
+                        d="M24,47.759l-0.823-1.191C22.558,45.671,8,24.499,8,16C8,7.178,15.178,0,24,0s16,7.178,16,16     c0,8.499-14.558,29.671-15.177,30.568L24,47.759z M24,2c-7.72,0-14,6.28-14,14c0,6.787,10.885,23.555,14,28.214     C27.115,39.555,38,22.787,38,16C38,8.28,31.72,2,24,2z"
+                      />
+                    </g>
+                    <g>
+                      <path
+                        d="M24,23c-3.859,0-7-3.14-7-7s3.141-7,7-7s7,3.14,7,7S27.859,23,24,23z M24,11c-2.757,0-5,2.243-5,5s2.243,5,5,5     s5-2.243,5-5S26.757,11,24,11z"
+                      />
+                    </g>
                   </g>
                 </g>
-              </g>
-            </svg>
-            <span class="user-additional-data-info" id="location"
-              >San Francisco</span
-            >
-          </div>
-          <div class="user-additional-data-item">
-            <svg
-              enable-background="new 0 0 56.693 56.693"
-              height="12px"
-              id="Layer_1"
-              version="1.1"
-              viewBox="0 0 56.693 56.693"
-              width="12px"
-              xml:space="preserve"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-            >
-              <path
-                d="M52.837,15.065c-1.811,0.805-3.76,1.348-5.805,1.591c2.088-1.25,3.689-3.23,4.444-5.592c-1.953,1.159-4.115,2-6.418,2.454  c-1.843-1.964-4.47-3.192-7.377-3.192c-5.581,0-10.106,4.525-10.106,10.107c0,0.791,0.089,1.562,0.262,2.303  c-8.4-0.422-15.848-4.445-20.833-10.56c-0.87,1.492-1.368,3.228-1.368,5.082c0,3.506,1.784,6.6,4.496,8.412  c-1.656-0.053-3.215-0.508-4.578-1.265c-0.001,0.042-0.001,0.085-0.001,0.128c0,4.896,3.484,8.98,8.108,9.91  c-0.848,0.23-1.741,0.354-2.663,0.354c-0.652,0-1.285-0.063-1.902-0.182c1.287,4.015,5.019,6.938,9.441,7.019  c-3.459,2.711-7.816,4.327-12.552,4.327c-0.815,0-1.62-0.048-2.411-0.142c4.474,2.869,9.786,4.541,15.493,4.541  c18.591,0,28.756-15.4,28.756-28.756c0-0.438-0.009-0.875-0.028-1.309C49.769,18.873,51.483,17.092,52.837,15.065z"
-              />
-            </svg>
-            <span class="user-additional-data-info" id="twitter-username"
-              >Not Available</span
-            >
-          </div>
-          <div class="user-additional-data-item">
-            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-              <title />
-              <g data-name="1" id="_1">
+              </svg>
+              <span class="vcar-detail-info" id="location">San Francisco</span>
+            </div>
+            <div class="vcard-detail">
+              <svg
+                enable-background="new 0 0 56.693 56.693"
+                height="12px"
+                id="Layer_1"
+                version="1.1"
+                viewBox="0 0 56.693 56.693"
+                width="12px"
+                xml:space="preserve"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
                 <path
-                  d="M149.67,393A95.49,95.49,0,0,1,82.11,230l64.7-64.7a95.65,95.65,0,0,1,135.1,0h0a95.65,95.65,0,0,1,0,135.11l-64.69,64.69A95.23,95.23,0,0,1,149.67,393Zm64.69-225.69A65.29,65.29,0,0,0,168,186.49l-64.7,64.7A65.53,65.53,0,0,0,196,343.86l64.7-64.7a65.51,65.51,0,0,0-46.34-111.84Z"
+                  d="M52.837,15.065c-1.811,0.805-3.76,1.348-5.805,1.591c2.088-1.25,3.689-3.23,4.444-5.592c-1.953,1.159-4.115,2-6.418,2.454  c-1.843-1.964-4.47-3.192-7.377-3.192c-5.581,0-10.106,4.525-10.106,10.107c0,0.791,0.089,1.562,0.262,2.303  c-8.4-0.422-15.848-4.445-20.833-10.56c-0.87,1.492-1.368,3.228-1.368,5.082c0,3.506,1.784,6.6,4.496,8.412  c-1.656-0.053-3.215-0.508-4.578-1.265c-0.001,0.042-0.001,0.085-0.001,0.128c0,4.896,3.484,8.98,8.108,9.91  c-0.848,0.23-1.741,0.354-2.663,0.354c-0.652,0-1.285-0.063-1.902-0.182c1.287,4.015,5.019,6.938,9.441,7.019  c-3.459,2.711-7.816,4.327-12.552,4.327c-0.815,0-1.62-0.048-2.411-0.142c4.474,2.869,9.786,4.541,15.493,4.541  c18.591,0,28.756-15.4,28.756-28.756c0-0.438-0.009-0.875-0.028-1.309C49.769,18.873,51.483,17.092,52.837,15.065z"
                 />
+              </svg>
+              <span class="vcard-detail-info" id="twitter-username"
+                >Not Available</span
+              >
+            </div>
+            <div class="vcard-detail">
+              <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                <title />
+                <g data-name="1" id="_1">
+                  <path
+                    d="M149.67,393A95.49,95.49,0,0,1,82.11,230l64.7-64.7a95.65,95.65,0,0,1,135.1,0h0a95.65,95.65,0,0,1,0,135.11l-64.69,64.69A95.23,95.23,0,0,1,149.67,393Zm64.69-225.69A65.29,65.29,0,0,0,168,186.49l-64.7,64.7A65.53,65.53,0,0,0,196,343.86l64.7-64.7a65.51,65.51,0,0,0-46.34-111.84Z"
+                  />
+                  <path
+                    d="M295.9,360.71a95,95,0,0,1-24.13-3.1,15,15,0,0,1,7.6-29,65.52,65.52,0,0,0,62.87-17.08l64.7-64.69a65.53,65.53,0,0,0-92.68-92.68l-64.69,64.7a65.84,65.84,0,0,0-17.08,62.89,15,15,0,0,1-29,7.55,95.92,95.92,0,0,1,24.9-91.65l64.69-64.7A95.53,95.53,0,1,1,428.15,268l-64.69,64.69A94.92,94.92,0,0,1,295.9,360.71Z"
+                  />
+                </g>
+              </svg>
+              <span class="vcard-detail-info" id="blog"
+                >https://github.blog</span
+              >
+            </div>
+            <div class="vcard-detail">
+              <svg
+                enable-background="new 0 0 32 32"
+                id="Glyph"
+                version="1.1"
+                viewBox="0 0 32 32"
+                xml:space="preserve"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
                 <path
-                  d="M295.9,360.71a95,95,0,0,1-24.13-3.1,15,15,0,0,1,7.6-29,65.52,65.52,0,0,0,62.87-17.08l64.7-64.69a65.53,65.53,0,0,0-92.68-92.68l-64.69,64.7a65.84,65.84,0,0,0-17.08,62.89,15,15,0,0,1-29,7.55,95.92,95.92,0,0,1,24.9-91.65l64.69-64.7A95.53,95.53,0,1,1,428.15,268l-64.69,64.69A94.92,94.92,0,0,1,295.9,360.71Z"
+                  d="M30.854,16.548C30.523,17.43,29.703,18,28.764,18H28v11c0,0.552-0.448,1-1,1h-6v-7c0-2.757-2.243-5-5-5  s-5,2.243-5,5v7H5c-0.552,0-1-0.448-1-1V18H3.235c-0.939,0-1.759-0.569-2.09-1.451c-0.331-0.882-0.088-1.852,0.62-2.47L13.444,3.019  c1.434-1.357,3.679-1.357,5.112,0l11.707,11.086C30.941,14.696,31.185,15.666,30.854,16.548z"
+                  id="XMLID_219_"
                 />
-              </g>
-            </svg>
-            <span class="user-additional-data-info" id="blog"
-              >https://github.blog</span
-            >
-          </div>
-          <div class="user-additional-data-item">
-            <svg
-              enable-background="new 0 0 32 32"
-              id="Glyph"
-              version="1.1"
-              viewBox="0 0 32 32"
-              xml:space="preserve"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-            >
-              <path
-                d="M30.854,16.548C30.523,17.43,29.703,18,28.764,18H28v11c0,0.552-0.448,1-1,1h-6v-7c0-2.757-2.243-5-5-5  s-5,2.243-5,5v7H5c-0.552,0-1-0.448-1-1V18H3.235c-0.939,0-1.759-0.569-2.09-1.451c-0.331-0.882-0.088-1.852,0.62-2.47L13.444,3.019  c1.434-1.357,3.679-1.357,5.112,0l11.707,11.086C30.941,14.696,31.185,15.666,30.854,16.548z"
-                id="XMLID_219_"
-              />
-            </svg>
-            <span class="user-additional-data-info" id="company">@github</span>
+              </svg>
+              <span class="vcard-detail-info" id="company">@github</span>
+            </div>
           </div>
         </div>
       </div>
