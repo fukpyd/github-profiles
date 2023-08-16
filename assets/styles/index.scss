@@ -1,4 +1,5 @@
 @use "sass:math";
+@use "sass:meta";
 
 *,
 ::before,
@@ -7,20 +8,49 @@
   padding: 0;
   margin: 0;
 }
+$--primary-bg: --primary-bg;
+$--secondary-bg: --secondary-bg;
+$--primary-font-color: --primary-font-color;
+
 $primary-font: "Heebo", cursive;
-$primary-bg: hsl(221, 42%, 13%);
-$secondary-bg: hsl(224, 40%, 20%);
-$search-btn: hsl(212, 99%, 50%);
-$primary-font-color: hsl(0, 0%, 100%);
+$search-button: hsl(212, 99%, 50%);
 $secondary-font-color: hsl(218, 11%, 80%);
 $not-available-item-font-color: hsl(226, 13%, 45%);
 $blue-font-color: hsl(212, 91%, 40%);
-
 $base-font-size: clamp(0.525rem, 0.5345rem + 0.4172vw, 1rem);
 $font-size-sm: clamp(0.325rem, 0.3345rem + 0.4172vw, 0.7rem);
-
 $base-margin-top: 8rem;
 $base-padding: 1vw;
+
+$theme-map-dark: (
+  $--primary-bg: hsl(221, 42%, 13%),
+  $--secondary-bg: hsl(224, 40%, 20%),
+  $--primary-font-color: hsl(0, 0%, 100%),
+);
+
+$theme-map-light: (
+  $--primary-bg: hsl(212, 99%, 50%),
+  $--secondary-bg: hsl(0, 0%, 100%),
+  $--primary-font-color: hsl(224, 40%, 20%),
+);
+
+@mixin theme-colors($map: ()) {
+  @each $key, $value in $map {
+    #{$key}: $value;
+  }
+}
+
+:root:not(.dark) {
+  @include theme-colors($theme-map-light);
+}
+
+:root.dark {
+  @include theme-colors($theme-map-dark);
+}
+
+@mixin css-var-styles($key, $value) {
+  #{$key}: var(#{$value});
+}
 
 $breakpoints: (
   "mobile": 320px,
@@ -61,8 +91,10 @@ body {
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background-color: $primary-bg;
   font-size: $base-font-size;
+  @include css-var-styles(background-color, $--primary-bg);
+  // @include css-var-styles(font-size, $--base-font-size);
+  // @include css-var-styles(font-family, $--primary-font);
   font-family: $primary-font;
   min-height: 100vh;
 }
@@ -76,23 +108,32 @@ body {
 .first-row {
   display: flex;
   justify-content: space-between;
-  color: $primary-font-color;
-  background-color: $primary-bg;
+  @include css-var-styles(background-color, $--primary-bg);
+  // background-color: $primary-bg;
   letter-spacing: 0.5px;
 
   .app-heading,
-  .mode-type {
+  .theme-type {
+    // @include css-var-styles(font-family, $--primary-font);
+    font-family: $primary-font;
+    // @include css-var-styles(font-size, $--base-font-size);
     font-size: $base-font-size;
+    @include css-var-styles(color, $--primary-font-color);
+    // color: $primary-font-color;
   }
 
-  .night-day-mode {
+  .dark-light-theme-btn {
     display: flex;
     justify-content: space-between;
     gap: 1rem;
     align-items: center;
+    @include css-var-styles(background-color, $--primary-bg);
+    // background-color: $primary-bg;
+    border: none;
+    cursor: pointer;
   }
 
-  .mode-type {
+  .theme-type {
     text-transform: uppercase;
   }
 }
@@ -100,17 +141,22 @@ body {
 .second-row {
   display: flex;
   justify-content: space-between;
-  background-color: $secondary-bg;
+  @include css-var-styles(background-color, $--secondary-bg);
+  // background-color: $secondary-bg;
+  // @include css-var-styles(padding, $--base-padding);
   padding: $base-padding;
   #search-icon {
     width: 2vw;
-    fill: $search-btn;
+    // @include css-var-styles(fill, $--search-button);
+    fill: $search-button;
   }
   .dev-search-line {
     display: flex;
     gap: 0.1rem;
     .dev-search-input {
-      color: $primary-font-color;
+      @include css-var-styles(color, $--primary-font-color);
+      // color: $primary-font-color;
+      // @include css-var-styles(font-size, $--font-size-sm);
       font-size: $font-size-sm;
       padding: 0.5rem;
       background-color: transparent;
@@ -119,16 +165,20 @@ body {
         outline: none;
       }
       &::placeholder {
-        color: $primary-font-color;
+        @include css-var-styles(color, $--primary-font-color);
+        // color: $primary-font-color;
       }
     }
   }
   .search-user-button {
-    background-color: $search-btn;
+    // @include css-var-styles(background-color, $--search-button);
+    background-color: $search-button;
     padding: 0.5rem 1rem;
     border-radius: 10px;
     border: none;
-    color: $primary-font-color;
+    @include css-var-styles(color, $--primary-font-color);
+    // color: $primary-font-color;
+    // @include css-var-styles(font-size, $--font-size-sm);
     font-size: $font-size-sm;
   }
 }
@@ -136,26 +186,40 @@ body {
   display: flex;
   justify-content: space-between;
   padding: $base-padding;
-  background-color: $secondary-bg;
+  @include css-var-styles(background-color, $--secondary-bg);
+  // background-color: $secondary-bg;
   font-size: $font-size-sm;
-  color: $primary-font-color;
-  .user-avatar {
-    flex-direction: column;
-    #octicon {
-      width: 8vw;
-    }
-  }
+  @include css-var-styles(color, $--primary-font-color);
+  // color: $primary-font-color;
+
   .user-layout {
+    padding-left: 25%;
+
     .user-fundamentals-profile {
       padding-bottom: $base-padding;
+      position: relative;
+
+      .user-avatar {
+        position: absolute;
+        left: -35%;
+        top: 0;
+        width: 25%;
+        #octicon {
+          width: 100%;
+        }
+      }
+
       .user-fundamentals-list {
         display: flex;
         flex-wrap: wrap;
         list-style: none;
+        position: relative;
+
         .user-fundamental-item {
           width: 50%;
           padding-bottom: 3px;
         }
+
         #user-name {
           font-size: $base-font-size;
           font-weight: bold;
@@ -177,7 +241,8 @@ body {
       display: flex;
       justify-content: space-between;
       padding: $base-padding;
-      background-color: $primary-bg;
+      @include css-var-styles(background-color, $--primary-bg);
+      // background-color: $primary-bg;
       border-radius: 10px;
       .user-achievements-overview {
         display: flex;
@@ -192,6 +257,7 @@ body {
       display: flex;
       flex-wrap: wrap;
       color: $secondary-font-color;
+      @include css-var-styles(color, $--primary-font-color);
       padding-top: $base-padding;
 
       @include mobile {
@@ -207,36 +273,142 @@ body {
   @include tablet-down {
     display: block;
     .user-layout {
+      padding-left: 0;
       .user-fundamentals-profile {
+        .user-avatar {
+          float: left;
+          position: static;
+        }
+
         .user-fundamentals-list {
+          display: block;
+
+          .user-fundamental-item {
+            display: inline-block;
+          }
           #user-name {
-            width: 100%;
             order: 1;
           }
           #enroll-date {
-            width: 100%;
             text-align: left;
             order: 3;
           }
           #nick-name {
-            width: 100%;
+            width: 50%;
             order: 2;
           }
           #bio {
-            width: 100%;
             order: 4;
           }
         }
       }
-    }
-    .user-avatar {
-      float: left;
-      margin: 1vw;
     }
   }
 }
 
 svg {
   width: 12px;
-  fill: $primary-font-color;
+  @include css-var-styles(fill, $--primary-font-color);
+  // fill: $primary-font-color;
 }
+
+// @media (prefers-color-theme: light) {
+//   body {
+//     $primary-bg: hsl(212, 99%, 50%);
+//     $secondary-bg: hsl(218, 11%, 80%);
+//     $primary-font-color: hsl(0, 0%, 13%, 1);
+
+//     background-color: $primary-bg;
+
+//     .first-row {
+//       background-color: $primary-bg;
+
+//       .dark-light-theme-btn {
+//         background-color: $primary-bg;
+//       }
+//       .app-heading,
+//       .theme-type {
+//         color: $primary-font-color;
+//       }
+//     }
+//     .second-row {
+//       background-color: $secondary-bg;
+//       padding: $base-padding;
+
+//       .dev-search-line {
+//         .dev-search-input {
+//           color: $primary-font-color;
+//           &::placeholder {
+//             color: $primary-font-color;
+//           }
+//         }
+//       }
+//       .search-user-button {
+//         color: $primary-font-color;
+//       }
+//     }
+//     .third-row {
+//       background-color: $secondary-bg;
+//       color: $primary-font-color;
+//       .user-achievements {
+//         background-color: $primary-bg;
+//       }
+//       .vcard-details {
+//         .vcard-detail {
+//           .vcard-detail-info {
+//             color: $primary-font-color;
+//           }
+//         }
+//       }
+//     }
+//     svg {
+//       fill: $primary-font-color;
+//     }
+//   }
+// }
+// $--theme-primary: --theme-primary;
+// $--theme-secondary: --theme-secondary;
+// $--theme-surface: --theme-surface;
+// $--theme-background: --theme-background;
+// $--theme-on-primary: --theme-on-primary;
+// $--theme-on-secondary: --theme-on-secondary;
+// $--theme-on-surface: --theme-on-surface;
+
+// // Default theme
+// $theme-map-light: (
+//   $--theme-primary: #d75894,
+//   $--theme-secondary: #9b3dca,
+//   $--theme-surface: #fff,
+//   $--theme-background: #fafafa,
+//   $--theme-on-primary: #fff,
+//   $--theme-on-secondary: #fff,
+//   $--theme-on-surface: #000,
+// );
+
+// // Override the default light theme
+// $theme-map-dark: (
+//   $--theme-primary: #f34c83,
+//   $--theme-secondary: #c298dc,
+//   $--theme-surface: #2f2b2b,
+//   $--theme-background: #1b1918,
+//   $--theme-on-primary: #443e41,
+//   $--theme-on-secondary: #000,
+//   $--theme-on-surface: #f5f1f2,
+// );
+
+// @mixin spread-map($map: ()) {
+//   @each $key, $value in $map {
+//     #{$key}: $value;
+//   }
+// }
+
+// @mixin var($property, $name) {
+//   #{$property}: var(#{$name});
+// }
+
+// :root.light {
+//   @include spread-map($theme-map-light);
+// }
+// :root.dark {
+//   @include spread-map($theme-map-dark);
+// }
