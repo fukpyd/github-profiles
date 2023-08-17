@@ -177,6 +177,10 @@ body {
   width: 50%;
   padding: 5px 0;
 }
+.third-row .user-layout .vcard-details .vcard-detail a {
+  text-decoration: none;
+  color: var(--primary-font-color);
+}
 @media (max-width: 1024px) {
   .third-row {
     display: block;

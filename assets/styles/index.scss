@@ -248,6 +248,10 @@ body {
       .vcard-detail {
         width: 50%;
         padding: 5px 0;
+        a {
+          text-decoration: none;
+          @include css-var-styles(color, $--primary-font-color);
+        }
       }
     }
   }
