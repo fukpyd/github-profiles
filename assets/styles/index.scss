@@ -93,8 +93,6 @@ body {
   justify-content: center;
   font-size: $base-font-size;
   @include css-var-styles(background-color, $--primary-bg);
-  // @include css-var-styles(font-size, $--base-font-size);
-  // @include css-var-styles(font-family, $--primary-font);
   font-family: $primary-font;
   min-height: 100vh;
 }
@@ -109,17 +107,13 @@ body {
   display: flex;
   justify-content: space-between;
   @include css-var-styles(background-color, $--primary-bg);
-  // background-color: $primary-bg;
   letter-spacing: 0.5px;
 
   .app-heading,
   .theme-type {
-    // @include css-var-styles(font-family, $--primary-font);
     font-family: $primary-font;
-    // @include css-var-styles(font-size, $--base-font-size);
     font-size: $base-font-size;
     @include css-var-styles(color, $--primary-font-color);
-    // color: $primary-font-color;
   }
 
   .dark-light-theme-btn {
@@ -128,7 +122,6 @@ body {
     gap: 1rem;
     align-items: center;
     @include css-var-styles(background-color, $--primary-bg);
-    // background-color: $primary-bg;
     border: none;
     cursor: pointer;
   }
@@ -142,12 +135,9 @@ body {
   display: flex;
   justify-content: space-between;
   @include css-var-styles(background-color, $--secondary-bg);
-  // background-color: $secondary-bg;
-  // @include css-var-styles(padding, $--base-padding);
   padding: $base-padding;
   #search-icon {
     width: 2vw;
-    // @include css-var-styles(fill, $--search-button);
     fill: $search-button;
   }
   .dev-search-line {
@@ -155,8 +145,6 @@ body {
     gap: 0.1rem;
     .dev-search-input {
       @include css-var-styles(color, $--primary-font-color);
-      // color: $primary-font-color;
-      // @include css-var-styles(font-size, $--font-size-sm);
       font-size: $font-size-sm;
       padding: 0.5rem;
       background-color: transparent;
@@ -166,19 +154,15 @@ body {
       }
       &::placeholder {
         @include css-var-styles(color, $--primary-font-color);
-        // color: $primary-font-color;
       }
     }
   }
   .search-user-button {
-    // @include css-var-styles(background-color, $--search-button);
     background-color: $search-button;
     padding: 0.5rem 1rem;
     border-radius: 10px;
     border: none;
     @include css-var-styles(color, $--primary-font-color);
-    // color: $primary-font-color;
-    // @include css-var-styles(font-size, $--font-size-sm);
     font-size: $font-size-sm;
   }
 }
@@ -187,10 +171,8 @@ body {
   justify-content: space-between;
   padding: $base-padding;
   @include css-var-styles(background-color, $--secondary-bg);
-  // background-color: $secondary-bg;
   font-size: $font-size-sm;
   @include css-var-styles(color, $--primary-font-color);
-  // color: $primary-font-color;
 
   .user-layout {
     padding-left: 25%;
@@ -199,13 +181,14 @@ body {
       padding-bottom: $base-padding;
       position: relative;
 
-      .user-avatar {
+      .user-icon {
         position: absolute;
         left: -35%;
         top: 0;
         width: 25%;
-        #octicon {
+        #user-avatar {
           width: 100%;
+          border-radius: 50%;
         }
       }
 
@@ -242,7 +225,6 @@ body {
       justify-content: space-between;
       padding: $base-padding;
       @include css-var-styles(background-color, $--primary-bg);
-      // background-color: $primary-bg;
       border-radius: 10px;
       .user-achievements-overview {
         display: flex;
@@ -275,7 +257,7 @@ body {
     .user-layout {
       padding-left: 0;
       .user-fundamentals-profile {
-        .user-avatar {
+        .user-icon {
           float: left;
           position: static;
         }
@@ -285,6 +267,7 @@ body {
 
           .user-fundamental-item {
             display: inline-block;
+            padding-left: 10px;
           }
           #user-name {
             order: 1;
@@ -309,106 +292,4 @@ body {
 svg {
   width: 12px;
   @include css-var-styles(fill, $--primary-font-color);
-  // fill: $primary-font-color;
 }
-
-// @media (prefers-color-theme: light) {
-//   body {
-//     $primary-bg: hsl(212, 99%, 50%);
-//     $secondary-bg: hsl(218, 11%, 80%);
-//     $primary-font-color: hsl(0, 0%, 13%, 1);
-
-//     background-color: $primary-bg;
-
-//     .first-row {
-//       background-color: $primary-bg;
-
-//       .dark-light-theme-btn {
-//         background-color: $primary-bg;
-//       }
-//       .app-heading,
-//       .theme-type {
-//         color: $primary-font-color;
-//       }
-//     }
-//     .second-row {
-//       background-color: $secondary-bg;
-//       padding: $base-padding;
-
-//       .dev-search-line {
-//         .dev-search-input {
-//           color: $primary-font-color;
-//           &::placeholder {
-//             color: $primary-font-color;
-//           }
-//         }
-//       }
-//       .search-user-button {
-//         color: $primary-font-color;
-//       }
-//     }
-//     .third-row {
-//       background-color: $secondary-bg;
-//       color: $primary-font-color;
-//       .user-achievements {
-//         background-color: $primary-bg;
-//       }
-//       .vcard-details {
-//         .vcard-detail {
-//           .vcard-detail-info {
-//             color: $primary-font-color;
-//           }
-//         }
-//       }
-//     }
-//     svg {
-//       fill: $primary-font-color;
-//     }
-//   }
-// }
-// $--theme-primary: --theme-primary;
-// $--theme-secondary: --theme-secondary;
-// $--theme-surface: --theme-surface;
-// $--theme-background: --theme-background;
-// $--theme-on-primary: --theme-on-primary;
-// $--theme-on-secondary: --theme-on-secondary;
-// $--theme-on-surface: --theme-on-surface;
-
-// // Default theme
-// $theme-map-light: (
-//   $--theme-primary: #d75894,
-//   $--theme-secondary: #9b3dca,
-//   $--theme-surface: #fff,
-//   $--theme-background: #fafafa,
-//   $--theme-on-primary: #fff,
-//   $--theme-on-secondary: #fff,
-//   $--theme-on-surface: #000,
-// );
-
-// // Override the default light theme
-// $theme-map-dark: (
-//   $--theme-primary: #f34c83,
-//   $--theme-secondary: #c298dc,
-//   $--theme-surface: #2f2b2b,
-//   $--theme-background: #1b1918,
-//   $--theme-on-primary: #443e41,
-//   $--theme-on-secondary: #000,
-//   $--theme-on-surface: #f5f1f2,
-// );
-
-// @mixin spread-map($map: ()) {
-//   @each $key, $value in $map {
-//     #{$key}: $value;
-//   }
-// }
-
-// @mixin var($property, $name) {
-//   #{$property}: var(#{$name});
-// }
-
-// :root.light {
-//   @include spread-map($theme-map-light);
-// }
-// :root.dark {
-//   @include spread-map($theme-map-dark);
-// }

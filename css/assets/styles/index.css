@@ -111,14 +111,15 @@ body {
   padding-bottom: 1vw;
   position: relative;
 }
-.third-row .user-layout .user-fundamentals-profile .user-avatar {
+.third-row .user-layout .user-fundamentals-profile .user-icon {
   position: absolute;
   left: -35%;
   top: 0;
   width: 25%;
 }
-.third-row .user-layout .user-fundamentals-profile .user-avatar #octicon {
+.third-row .user-layout .user-fundamentals-profile .user-icon #user-avatar {
   width: 100%;
+  border-radius: 50%;
 }
 .third-row .user-layout .user-fundamentals-profile .user-fundamentals-list {
   display: flex;
@@ -183,7 +184,7 @@ body {
   .third-row .user-layout {
     padding-left: 0;
   }
-  .third-row .user-layout .user-fundamentals-profile .user-avatar {
+  .third-row .user-layout .user-fundamentals-profile .user-icon {
     float: left;
     position: static;
   }
@@ -192,6 +193,7 @@ body {
   }
   .third-row .user-layout .user-fundamentals-profile .user-fundamentals-list .user-fundamental-item {
     display: inline-block;
+    padding-left: 10px;
   }
   .third-row .user-layout .user-fundamentals-profile .user-fundamentals-list #user-name {
     order: 1;
