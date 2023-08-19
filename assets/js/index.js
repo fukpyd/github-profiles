@@ -20,6 +20,7 @@ const userLocation = document.querySelector("#location");
 const userTwitter = document.querySelector("#twitter-username");
 const userBlog = document.querySelector("#blog");
 const userCompany = document.querySelector("#company");
+const DEFAULT_VALUE = "Not Available";
 
 if (currentTheme === "dark") {
   document.documentElement.classList.toggle("dark");
@@ -60,8 +61,6 @@ userSearchBtn.addEventListener("click", function () {
       }
       const data = await response.json();
 
-      const DEFAULT_VALUE = "Not Available";
-
       userName.textContent = data?.name || DEFAULT_VALUE;
 
       userEnrollDate.textContent = data?.created_at || DEFAULT_VALUE;
@@ -74,7 +73,7 @@ userSearchBtn.addEventListener("click", function () {
 
       userLogin.textContent = data?.login || DEFAULT_VALUE;
 
-      userBio.textContent = data?.bio || DEFAULT_VALUE;
+      userBio.textContent = data?.bio || "This profile has no bio";
 
       userRepos.textContent = data?.public_repos;
       userFollowers.textContent = data?.followers;
@@ -89,26 +88,19 @@ userSearchBtn.addEventListener("click", function () {
 
       userAvatar.src = data?.avatar_url;
 
-      // if (userLogin.textContent === DEFAULT_VALUE) {
-      //   userLogin.style.color = "#646b82";
-      // }
-      // if (userCompany.textContent === DEFAULT_VALUE) {
-      //   userCompany.style.color = "#646b82";
-      // }
-      // if (userBlog.textContent === DEFAULT_VALUE) {
-      //   userBlog.style.color = "#646b82";
-      // }
-      // if (userTwitter.textContent === DEFAULT_VALUE) {
-      //   userTwitter.style.color = "#646b82";
-      // }
+      const arr = [userLogin, userCompany, userBlog, userTwitter, userLocation];
 
-      // if (userLocation.textContent === DEFAULT_VALUE) {
-      //   userLocation.style.color = "#646b82";
-      // }
-      // if (userBio.textContent === DEFAULT_VALUE) {
-      //   userBio.style.color = "#646b82";
-      // }
+      const classForUnavailableData = "vcard-detail-info-unavailable";
 
+      arr.forEach((el) => {
+        if (el.textContent === DEFAULT_VALUE) {
+          !el.classList.contains(classForUnavailableData) &&
+            el.classList.add(classForUnavailableData);
+        } else {
+          el.classList.contains(classForUnavailableData) &&
+            el.classList.remove(classForUnavailableData);
+        }
+      });
       searchedUser.value = "";
     } catch (err) {
       alert(`Sorry! ${err.message}`);
