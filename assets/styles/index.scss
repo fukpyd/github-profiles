@@ -17,8 +17,8 @@ $search-button: hsl(212, 99%, 50%);
 $secondary-font-color: hsl(218, 11%, 80%);
 $not-available-item-font-color: hsl(226, 13%, 45%);
 $blue-font-color: hsl(212, 91%, 40%);
-$base-font-size: clamp(0.525rem, 0.5345rem + 0.4172vw, 1rem);
-$font-size-sm: clamp(0.325rem, 0.3345rem + 0.4172vw, 0.7rem);
+$base-font-size: clamp(1rem, 0.821rem + 0.476vw, 1.25rem);
+$font-size-sm: clamp(0.75rem, 0.571rem + 0.476vw, 1rem);
 $base-margin-top: 8rem;
 $base-padding: 1vw;
 
@@ -89,7 +89,6 @@ $breakpoints: (
 body {
   display: flex;
   align-items: center;
-  flex-direction: column;
   justify-content: center;
   font-size: $base-font-size;
   @include css-var-styles(background-color, $--primary-bg);
@@ -97,10 +96,17 @@ body {
   min-height: 100vh;
 }
 
+.user-search-app-main-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 50vw;
+  min-width: 250px;
+  max-width: 1024px;
+}
+
 .user-search-app-row {
-  margin: 1rem;
   border-radius: 10px;
-  max-width: 40vw;
 }
 
 .first-row {
@@ -133,33 +139,38 @@ body {
 
 .second-row {
   display: flex;
-  justify-content: space-between;
   @include css-var-styles(background-color, $--secondary-bg);
   padding: $base-padding;
   #search-icon {
-    width: 2vw;
+    width: 20px;
     fill: $search-button;
   }
   .dev-search-line {
     display: flex;
+    flex: 1;
     gap: 0.1rem;
-    .dev-search-input {
-      @include css-var-styles(color, $--primary-font-color);
-      font-size: $font-size-sm;
-      padding: 0.5rem;
-      background-color: transparent;
-      border: none;
-      &:focus {
-        outline: none;
-      }
-      &::placeholder {
+    .dev-search-form {
+      width: 100%;
+
+      .dev-search-input {
+        width: 100%;
         @include css-var-styles(color, $--primary-font-color);
+        font-size: $font-size-sm;
+        padding: 0.5rem;
+        background-color: transparent;
+        border: none;
+        &:focus {
+          outline: none;
+        }
+        &::placeholder {
+          @include css-var-styles(color, $--primary-font-color);
+        }
       }
     }
   }
   .search-user-button {
     background-color: $search-button;
-    padding: 0.5rem 1rem;
+    padding: 0.5em 1em;
     border-radius: 10px;
     border: none;
     @include css-var-styles(color, $--primary-font-color);
@@ -247,8 +258,8 @@ body {
       }
       .vcard-detail {
         width: 50%;
-        padding: 5px 0;
-        // flex-wrap: wrap;
+        padding: 5px 15px 5px 5px;
+        word-break: break-all;
         a {
           text-decoration: none;
           @include css-var-styles(color, $--primary-font-color);
@@ -273,6 +284,7 @@ body {
 
         .user-fundamentals-list {
           display: block;
+          line-height: 25px;
 
           .user-fundamental-item {
             display: inline-block;

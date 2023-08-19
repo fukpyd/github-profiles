@@ -21,18 +21,24 @@
 body {
   display: flex;
   align-items: center;
-  flex-direction: column;
   justify-content: center;
-  font-size: clamp(0.525rem, 0.5345rem + 0.4172vw, 1rem);
+  font-size: clamp(1rem, 0.821rem + 0.476vw, 1.25rem);
   background-color: var(--primary-bg);
   font-family: "Heebo", cursive;
   min-height: 100vh;
 }
 
+.user-search-app-main-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 50vw;
+  min-width: 250px;
+  max-width: 1024px;
+}
+
 .user-search-app-row {
-  margin: 1rem;
   border-radius: 10px;
-  max-width: 40vw;
 }
 
 .first-row {
@@ -44,7 +50,7 @@ body {
 .first-row .app-heading,
 .first-row .theme-type {
   font-family: "Heebo", cursive;
-  font-size: clamp(0.525rem, 0.5345rem + 0.4172vw, 1rem);
+  font-size: clamp(1rem, 0.821rem + 0.476vw, 1.25rem);
   color: var(--primary-font-color);
 }
 .first-row .dark-light-theme-btn {
@@ -62,38 +68,42 @@ body {
 
 .second-row {
   display: flex;
-  justify-content: space-between;
   background-color: var(--secondary-bg);
   padding: 1vw;
 }
 .second-row #search-icon {
-  width: 2vw;
+  width: 20px;
   fill: hsl(212, 99%, 50%);
 }
 .second-row .dev-search-line {
   display: flex;
+  flex: 1;
   gap: 0.1rem;
 }
-.second-row .dev-search-line .dev-search-input {
+.second-row .dev-search-line .dev-search-form {
+  width: 100%;
+}
+.second-row .dev-search-line .dev-search-form .dev-search-input {
+  width: 100%;
   color: var(--primary-font-color);
-  font-size: clamp(0.325rem, 0.3345rem + 0.4172vw, 0.7rem);
+  font-size: clamp(0.75rem, 0.571rem + 0.476vw, 1rem);
   padding: 0.5rem;
   background-color: transparent;
   border: none;
 }
-.second-row .dev-search-line .dev-search-input:focus {
+.second-row .dev-search-line .dev-search-form .dev-search-input:focus {
   outline: none;
 }
-.second-row .dev-search-line .dev-search-input::placeholder {
+.second-row .dev-search-line .dev-search-form .dev-search-input::placeholder {
   color: var(--primary-font-color);
 }
 .second-row .search-user-button {
   background-color: hsl(212, 99%, 50%);
-  padding: 0.5rem 1rem;
+  padding: 0.5em 1em;
   border-radius: 10px;
   border: none;
   color: var(--primary-font-color);
-  font-size: clamp(0.325rem, 0.3345rem + 0.4172vw, 0.7rem);
+  font-size: clamp(0.75rem, 0.571rem + 0.476vw, 1rem);
 }
 
 .third-row {
@@ -101,7 +111,7 @@ body {
   justify-content: space-between;
   padding: 1vw;
   background-color: var(--secondary-bg);
-  font-size: clamp(0.325rem, 0.3345rem + 0.4172vw, 0.7rem);
+  font-size: clamp(0.75rem, 0.571rem + 0.476vw, 1rem);
   color: var(--primary-font-color);
 }
 .third-row .user-layout {
@@ -132,7 +142,7 @@ body {
   padding-bottom: 3px;
 }
 .third-row .user-layout .user-fundamentals-profile .user-fundamentals-list #user-name {
-  font-size: clamp(0.525rem, 0.5345rem + 0.4172vw, 1rem);
+  font-size: clamp(1rem, 0.821rem + 0.476vw, 1.25rem);
   font-weight: bold;
 }
 .third-row .user-layout .user-fundamentals-profile .user-fundamentals-list #nick-name {
@@ -158,7 +168,7 @@ body {
   flex-direction: column;
 }
 .third-row .user-layout .user-achievements .user-achievements-overview .user-achievement-info {
-  font-size: clamp(0.525rem, 0.5345rem + 0.4172vw, 1rem);
+  font-size: clamp(1rem, 0.821rem + 0.476vw, 1.25rem);
   font-weight: bold;
 }
 .third-row .user-layout .vcard-details {
@@ -175,7 +185,8 @@ body {
 }
 .third-row .user-layout .vcard-details .vcard-detail {
   width: 50%;
-  padding: 5px 0;
+  padding: 5px 15px 5px 5px;
+  word-break: break-all;
 }
 .third-row .user-layout .vcard-details .vcard-detail a {
   text-decoration: none;
@@ -197,6 +208,7 @@ body {
   }
   .third-row .user-layout .user-fundamentals-profile .user-fundamentals-list {
     display: block;
+    line-height: 25px;
   }
   .third-row .user-layout .user-fundamentals-profile .user-fundamentals-list .user-fundamental-item {
     display: inline-block;
