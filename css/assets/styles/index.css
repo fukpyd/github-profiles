@@ -181,6 +181,9 @@ body {
   text-decoration: none;
   color: var(--primary-font-color);
 }
+.third-row .user-layout .vcard-details .vcard-detail-info-unavailable {
+  color: hsl(226, 13%, 45%);
+}
 @media (max-width: 1024px) {
   .third-row {
     display: block;

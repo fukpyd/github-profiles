@@ -248,9 +248,14 @@ body {
       .vcard-detail {
         width: 50%;
         padding: 5px 0;
+        // flex-wrap: wrap;
         a {
           text-decoration: none;
           @include css-var-styles(color, $--primary-font-color);
+        }
+
+        &-info-unavailable {
+          color: $not-available-item-font-color;
         }
       }
     }
