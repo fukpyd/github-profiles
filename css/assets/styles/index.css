@@ -77,14 +77,15 @@ body {
 }
 .second-row .dev-search-line {
   display: flex;
-  flex: 1;
+  width: 100%;
   gap: 0.1rem;
 }
 .second-row .dev-search-line .dev-search-form {
-  width: 100%;
+  display: flex;
+  flex: 1;
 }
 .second-row .dev-search-line .dev-search-form .dev-search-input {
-  width: 100%;
+  flex: 1;
   color: var(--primary-font-color);
   font-size: clamp(0.75rem, 0.571rem + 0.476vw, 1rem);
   padding: 0.5rem;
@@ -97,6 +98,9 @@ body {
 .second-row .dev-search-line .dev-search-form .dev-search-input::placeholder {
   color: var(--primary-font-color);
 }
+.second-row .dev-search-line .dev-search-form .dev-search-input:invalid::placeholder {
+  color: red;
+}
 .second-row .search-user-button {
   background-color: hsl(212, 99%, 50%);
   padding: 0.5em 1em;
@@ -106,8 +110,11 @@ body {
   font-size: clamp(0.75rem, 0.571rem + 0.476vw, 1rem);
 }
 
+.invisible-row {
+  display: none;
+}
+
 .third-row {
-  display: flex;
   justify-content: space-between;
   padding: 1vw;
   background-color: var(--secondary-bg);
@@ -115,6 +122,7 @@ body {
   color: var(--primary-font-color);
 }
 .third-row .user-layout {
+  width: 100%;
   padding-left: 25%;
 }
 .third-row .user-layout .user-fundamentals-profile {
@@ -196,9 +204,6 @@ body {
   color: hsl(226, 13%, 45%);
 }
 @media (max-width: 1024px) {
-  .third-row {
-    display: block;
-  }
   .third-row .user-layout {
     padding-left: 0;
   }

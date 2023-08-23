@@ -147,13 +147,14 @@ body {
   }
   .dev-search-line {
     display: flex;
-    flex: 1;
+    width: 100%;
     gap: 0.1rem;
     .dev-search-form {
-      width: 100%;
+      display: flex;
+      flex: 1;
 
       .dev-search-input {
-        width: 100%;
+        flex: 1;
         @include css-var-styles(color, $--primary-font-color);
         font-size: $font-size-sm;
         padding: 0.5rem;
@@ -164,6 +165,10 @@ body {
         }
         &::placeholder {
           @include css-var-styles(color, $--primary-font-color);
+        }
+
+        &:invalid::placeholder {
+          color: red;
         }
       }
     }
@@ -177,8 +182,12 @@ body {
     font-size: $font-size-sm;
   }
 }
+
+.invisible-row {
+  display: none;
+}
+
 .third-row {
-  display: flex;
   justify-content: space-between;
   padding: $base-padding;
   @include css-var-styles(background-color, $--secondary-bg);
@@ -186,6 +195,7 @@ body {
   @include css-var-styles(color, $--primary-font-color);
 
   .user-layout {
+    width: 100%;
     padding-left: 25%;
 
     .user-fundamentals-profile {
@@ -273,7 +283,6 @@ body {
   }
 
   @include tablet-down {
-    display: block;
     .user-layout {
       padding-left: 0;
       .user-fundamentals-profile {
