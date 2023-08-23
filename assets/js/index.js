@@ -20,7 +20,10 @@ const userLocation = document.querySelector("#location");
 const userTwitter = document.querySelector("#twitter-username");
 const userBlog = document.querySelector("#blog");
 const userCompany = document.querySelector("#company");
+const form = document.querySelector(".dev-search-form");
 const DEFAULT_VALUE = "Not Available";
+const secondRowApp = document.querySelector(".second-row");
+const thirdRowApp = document.querySelector(".third-row");
 
 if (currentTheme === "dark") {
   document.documentElement.classList.toggle("dark");
@@ -41,6 +44,10 @@ themeButton.addEventListener("click", function () {
   localStorage.setItem("theme", theme);
 });
 
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+});
+
 searchedUser.addEventListener("keyup", function (e) {
   e.preventDefault();
   if (e.keyCode === 13) {
@@ -49,7 +56,7 @@ searchedUser.addEventListener("keyup", function (e) {
 });
 
 userSearchBtn.addEventListener("click", function () {
-  const searchingUser = searchedUser.value;
+  let searchingUser = searchedUser.value;
 
   const getGithubData = async function (searchingUser) {
     try {
@@ -61,6 +68,23 @@ userSearchBtn.addEventListener("click", function () {
       }
       const data = await response.json();
 
+      let isLogin = data?.login;
+
+      const classForInvisibleRow = "invisible-row";
+
+      if (searchingUser === isLogin) {
+        thirdRowApp.classList.contains(classForInvisibleRow) &&
+          thirdRowApp.classList.remove(classForInvisibleRow);
+        userLogin.textContent = data.login;
+        secondRowApp.style.border = "none";
+        searchedUser.placeholder = "Search GitHub user login...";
+      } else {
+        !thirdRowApp.classList.contains(classForInvisibleRow) &&
+          thirdRowApp.classList.add(classForInvisibleRow);
+        secondRowApp.style.border = "2px solid red";
+        searchedUser.placeholder = "User not found, please try again...";
+      }
+
       userName.textContent = data?.name || DEFAULT_VALUE;
 
       userEnrollDate.textContent = data?.created_at || DEFAULT_VALUE;
@@ -71,8 +95,6 @@ userSearchBtn.addEventListener("click", function () {
       }).format(toConversionDate);
       userEnrollDate.textContent = `Joined ${formattedEnrollDate}`;
 
-      userLogin.textContent = data?.login || DEFAULT_VALUE;
-
       userBio.textContent = data?.bio || "This profile has no bio";
 
       userRepos.textContent = data?.public_repos;
@@ -80,11 +102,17 @@ userSearchBtn.addEventListener("click", function () {
       userFollowing.textContent = data?.following;
       userLocation.textContent = data?.location || DEFAULT_VALUE;
 
-      userTwitter.textContent = data?.twitter_username || DEFAULT_VALUE;
+      userTwitter.innerHTML = data?.twitter_username
+        ? `<a href=${data.twitter_username}>${data.twitter_username}</a>`
+        : DEFAULT_VALUE;
 
-      userBlog.textContent = data?.blog || DEFAULT_VALUE;
+      userBlog.innerHTML = data?.blog
+        ? `<a href=${data.blog}>${data.blog}</a>`
+        : DEFAULT_VALUE;
 
-      userCompany.textContent = data?.company || DEFAULT_VALUE;
+      userCompany.innerHTML = data?.company
+        ? `<a href=${data.company}>${data.company}</a>`
+        : DEFAULT_VALUE;
 
       userAvatar.src = data?.avatar_url;
 
@@ -103,7 +131,12 @@ userSearchBtn.addEventListener("click", function () {
       });
       searchedUser.value = "";
     } catch (err) {
-      alert(`Sorry! ${err.message}`);
+      const classForInvisibleRow = "invisible-row";
+      !thirdRowApp.classList.contains(classForInvisibleRow) &&
+        thirdRowApp.classList.add(classForInvisibleRow);
+      secondRowApp.style.border = "2px solid red";
+      searchedUser.value = "";
+      searchedUser.placeholder = "User not found, please try again...";
     }
   };
   getGithubData(searchingUser);
