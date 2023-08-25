@@ -1,4 +1,4 @@
-const themeButton = document.querySelector(".dark-light-theme-btn");
+const themeButton = document.querySelector(".theme-button");
 const themeType = document.querySelector(".theme-type");
 const currentTheme = localStorage.getItem("theme");
 const THEME = {
@@ -6,24 +6,23 @@ const THEME = {
   DARK: "DARK",
 };
 
-const userSearchBtn = document.querySelector(".search-user-button");
-const searchedUser = document.querySelector(".dev-search-input");
-const userAvatar = document.querySelector("#user-avatar");
-const userName = document.querySelector("#user-name");
-const userEnrollDate = document.querySelector("#enroll-date");
-const userLogin = document.querySelector("#login");
-const userBio = document.querySelector("#bio");
-const userRepos = document.querySelector("#repos");
-const userFollowers = document.querySelector("#followers");
-const userFollowing = document.querySelector("#following");
-const userLocation = document.querySelector("#location");
-const userTwitter = document.querySelector("#twitter-username");
-const userBlog = document.querySelector("#blog");
-const userCompany = document.querySelector("#company");
-const form = document.querySelector(".dev-search-form");
+const userSearchBtn = document.querySelector(".search-button");
+const searchedUser = document.querySelector(".search-input");
+const userAvatar = document.querySelector(".avatar");
+const userName = document.querySelector(".user-name");
+const userCreateDate = document.querySelector(".created-at");
+const userLogin = document.querySelector(".login");
+const userBio = document.querySelector(".bio");
+const userRepos = document.querySelector(".repos");
+const userFollowers = document.querySelector(".followers");
+const userFollowing = document.querySelector(".following");
+const userLocation = document.querySelector(".location");
+const userTwitter = document.querySelector(".twitter-username");
+const userBlog = document.querySelector(".blog");
+const userCompany = document.querySelector(".company");
+const form = document.querySelector(".search-form");
 const DEFAULT_VALUE = "Not Available";
-const secondRowApp = document.querySelector(".second-row");
-const thirdRowApp = document.querySelector(".third-row");
+const resultWrapper = document.querySelector(".app-result");
 
 if (currentTheme === "dark") {
   document.documentElement.classList.toggle("dark");
@@ -68,32 +67,35 @@ userSearchBtn.addEventListener("click", function () {
       }
       const data = await response.json();
 
+      console.log(data);
+
       let isLogin = data?.login;
 
-      const classForInvisibleRow = "invisible-row";
+      const hiddenClassName = "hidden";
 
       if (searchingUser === isLogin) {
-        thirdRowApp.classList.contains(classForInvisibleRow) &&
-          thirdRowApp.classList.remove(classForInvisibleRow);
+        resultWrapper.classList.contains(hiddenClassName) &&
+          resultWrapper.classList.remove(hiddenClassName);
         userLogin.textContent = data.login;
-        secondRowApp.style.border = "none";
+        form.style.border = "none";
         searchedUser.placeholder = "Search GitHub user login...";
       } else {
-        !thirdRowApp.classList.contains(classForInvisibleRow) &&
-          thirdRowApp.classList.add(classForInvisibleRow);
-        secondRowApp.style.border = "2px solid red";
+        !resultWrapper.classList.contains(hiddenClassName) &&
+          resultWrapper.classList.add(hiddenClassName);
+        form.style.border = "2px solid red";
         searchedUser.placeholder = "User not found, please try again...";
       }
 
       userName.textContent = data?.name || DEFAULT_VALUE;
 
-      userEnrollDate.textContent = data?.created_at || DEFAULT_VALUE;
-      const enrollDate = userEnrollDate.textContent;
+      userCreateDate.textContent = data?.created_at || DEFAULT_VALUE;
+      const enrollDate = userCreateDate.textContent;
       const toConversionDate = new Date(enrollDate);
       const formattedEnrollDate = new Intl.DateTimeFormat("en-GB", {
         dateStyle: "medium",
       }).format(toConversionDate);
-      userEnrollDate.textContent = `Joined ${formattedEnrollDate}`;
+      console.log(`Joined ${formattedEnrollDate}`);
+      userCreateDate.textContent = `Joined ${formattedEnrollDate}`;
 
       userBio.textContent = data?.bio || "This profile has no bio";
 
@@ -118,7 +120,7 @@ userSearchBtn.addEventListener("click", function () {
 
       const arr = [userLogin, userCompany, userBlog, userTwitter, userLocation];
 
-      const classForUnavailableData = "vcard-detail-info-unavailable";
+      const classForUnavailableData = "unavailable";
 
       arr.forEach((el) => {
         if (el.textContent === DEFAULT_VALUE) {
@@ -131,10 +133,11 @@ userSearchBtn.addEventListener("click", function () {
       });
       searchedUser.value = "";
     } catch (err) {
-      const classForInvisibleRow = "invisible-row";
-      !thirdRowApp.classList.contains(classForInvisibleRow) &&
-        thirdRowApp.classList.add(classForInvisibleRow);
-      secondRowApp.style.border = "2px solid red";
+      console.log("2");
+      const hiddenClassName = "hidden";
+      !resultWrapper.classList.contains(hiddenClassName) &&
+        resultWrapper.classList.add(hiddenClassName);
+      form.style.border = "2px solid red";
       searchedUser.value = "";
       searchedUser.placeholder = "User not found, please try again...";
     }

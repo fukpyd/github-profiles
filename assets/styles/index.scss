@@ -96,7 +96,7 @@ body {
   min-height: 100vh;
 }
 
-.user-search-app-main-layout {
+.app-wrapper {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -105,11 +105,11 @@ body {
   max-width: 1024px;
 }
 
-.user-search-app-row {
+.row {
   border-radius: 10px;
 }
 
-.first-row {
+.app-header {
   display: flex;
   justify-content: space-between;
   @include css-var-styles(background-color, $--primary-bg);
@@ -122,7 +122,7 @@ body {
     @include css-var-styles(color, $--primary-font-color);
   }
 
-  .dark-light-theme-btn {
+  .theme-button {
     display: flex;
     justify-content: space-between;
     gap: 1rem;
@@ -137,184 +137,174 @@ body {
   }
 }
 
-.second-row {
+.search-form {
   display: flex;
   @include css-var-styles(background-color, $--secondary-bg);
   padding: $base-padding;
-  #search-icon {
-    width: 20px;
-    fill: $search-button;
-  }
-  .dev-search-line {
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  width: 100%;
+  gap: 0.1rem;
+  flex: 1;
+
+  .search-label {
     display: flex;
-    width: 100%;
-    gap: 0.1rem;
-    .dev-search-form {
-      display: flex;
-      flex: 1;
+    align-items: center;
+    justify-items: center;
 
-      .dev-search-input {
-        flex: 1;
-        @include css-var-styles(color, $--primary-font-color);
-        font-size: $font-size-sm;
-        padding: 0.5rem;
-        background-color: transparent;
-        border: none;
-        &:focus {
-          outline: none;
-        }
-        &::placeholder {
-          @include css-var-styles(color, $--primary-font-color);
-        }
-
-        &:invalid::placeholder {
-          color: red;
-        }
-      }
+    .search-icon {
+      width: 20px;
+      fill: $search-button;
     }
   }
-  .search-user-button {
-    background-color: $search-button;
-    padding: 0.5em 1em;
-    border-radius: 10px;
-    border: none;
+
+  .search-input {
+    flex: 1;
     @include css-var-styles(color, $--primary-font-color);
     font-size: $font-size-sm;
+    padding: 0.5rem;
+    background-color: transparent;
+    border: none;
+    &:focus {
+      outline: none;
+    }
+    &::placeholder {
+      @include css-var-styles(color, $--primary-font-color);
+    }
+
+    &:invalid::placeholder {
+      color: red;
+    }
   }
 }
-
-.invisible-row {
-  display: none;
+.search-button {
+  background-color: $search-button;
+  padding: 0.5em 1em;
+  border-radius: 10px;
+  border: none;
+  @include css-var-styles(color, $--primary-font-color);
+  font-size: $font-size-sm;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
-.third-row {
+.app-result {
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
   padding: $base-padding;
   @include css-var-styles(background-color, $--secondary-bg);
   font-size: $font-size-sm;
   @include css-var-styles(color, $--primary-font-color);
+  padding-left: 25%;
+  position: relative;
+  row-gap: $base-padding;
 
-  .user-layout {
-    width: 100%;
-    padding-left: 25%;
+  .user-short-overview {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    position: relative;
 
-    .user-fundamentals-profile {
-      padding-bottom: $base-padding;
-      position: relative;
-
-      .user-icon {
-        position: absolute;
-        left: -35%;
-        top: 0;
-        width: 25%;
-        #user-avatar {
-          width: 100%;
-          border-radius: 50%;
-        }
-      }
-
-      .user-fundamentals-list {
-        display: flex;
-        flex-wrap: wrap;
-        list-style: none;
-        position: relative;
-
-        .user-fundamental-item {
-          width: 50%;
-          padding-bottom: 3px;
-        }
-
-        #user-name {
-          font-size: $base-font-size;
-          font-weight: bold;
-        }
-        #nick-name {
-          width: 100%;
-          color: $blue-font-color;
-        }
-        #enroll-date {
-          text-align: right;
-        }
-        #bio {
-          width: 100%;
-          padding: 15px 0 10px 0;
-        }
+    .avatar-wrapper {
+      position: absolute;
+      left: -35%;
+      top: 0;
+      width: 25%;
+      .avatar {
+        width: 100%;
+        border-radius: 50%;
       }
     }
-    .user-achievements {
-      display: flex;
-      justify-content: space-between;
-      padding: $base-padding;
-      @include css-var-styles(background-color, $--primary-bg);
-      border-radius: 10px;
-      .user-achievements-overview {
-        display: flex;
-        flex-direction: column;
-        .user-achievement-info {
-          font-size: $base-font-size;
-          font-weight: bold;
-        }
-      }
+
+    .overview-item {
+      width: 50%;
+      padding-bottom: 3px;
     }
-    .vcard-details {
-      display: flex;
-      flex-wrap: wrap;
-      color: $secondary-font-color;
-      @include css-var-styles(color, $--primary-font-color);
-      padding-top: $base-padding;
 
-      @include mobile {
-        flex-direction: column;
-      }
-      .vcard-detail {
-        width: 50%;
-        padding: 5px 15px 5px 5px;
-        word-break: break-all;
-        a {
-          text-decoration: none;
-          @include css-var-styles(color, $--primary-font-color);
-        }
+    .user-name {
+      font-size: $base-font-size;
+      font-weight: bold;
+    }
 
-        &-info-unavailable {
-          color: $not-available-item-font-color;
-        }
-      }
+    .login {
+      width: 100%;
+      color: $blue-font-color;
+    }
+
+    .created-at {
+      text-align: right;
+    }
+    .bio {
+      width: 100%;
+      padding: 15px 0 10px 0;
     }
   }
+}
+.user-stats {
+  display: flex;
+  justify-content: space-between;
+  padding: $base-padding;
+  @include css-var-styles(background-color, $--primary-bg);
+  border-radius: 10px;
+  .user-stat {
+    display: flex;
+    flex-direction: column;
+    .stat-value {
+      font-size: $base-font-size;
+      font-weight: bold;
+    }
+  }
+}
+.contact-details {
+  display: flex;
+  flex-wrap: wrap;
+  color: $secondary-font-color;
+  @include css-var-styles(color, $--primary-font-color);
+  padding-top: $base-padding;
+  list-style: none;
 
-  @include tablet-down {
-    .user-layout {
-      padding-left: 0;
-      .user-fundamentals-profile {
-        .user-icon {
-          float: left;
-          position: static;
-        }
+  @include mobile {
+    flex-direction: column;
+  }
+  .contact-detail {
+    width: 50%;
+    padding: 5px 15px 5px 5px;
+    word-break: break-all;
+    a {
+      text-decoration: none;
+      @include css-var-styles(color, $--primary-font-color);
+    }
+  }
+}
 
-        .user-fundamentals-list {
-          display: block;
-          line-height: 25px;
+@include tablet-down {
+  .avatar-wrapper {
+    float: left;
+    position: static;
+  }
 
-          .user-fundamental-item {
-            display: inline-block;
-            padding-left: 10px;
-          }
-          #user-name {
-            order: 1;
-          }
-          #enroll-date {
-            text-align: left;
-            order: 3;
-          }
-          #nick-name {
-            width: 50%;
-            order: 2;
-          }
-          #bio {
-            order: 4;
-          }
-        }
-      }
+  .user-short-overview {
+    display: block;
+    line-height: 25px;
+
+    .overview-item {
+      display: inline-block;
+      padding-left: 10px;
+    }
+    .user-name {
+      order: 1;
+    }
+    .created-at {
+      text-align: left;
+      order: 3;
+    }
+    .login {
+      width: 50%;
+      order: 2;
+    }
+    .bio {
+      order: 4;
     }
   }
 }
@@ -322,4 +312,12 @@ body {
 svg {
   width: 12px;
   @include css-var-styles(fill, $--primary-font-color);
+}
+
+.unavailable {
+  color: $not-available-item-font-color;
+}
+
+.hidden {
+  display: none;
 }
