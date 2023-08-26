@@ -105,15 +105,15 @@ userSearchBtn.addEventListener("click", function () {
       userLocation.textContent = data?.location || DEFAULT_VALUE;
 
       userTwitter.innerHTML = data?.twitter_username
-        ? `<a href=${data.twitter_username}>${data.twitter_username}</a>`
+        ? `<a href=${data.twitter_username} class="link">${data.twitter_username}</a>`
         : DEFAULT_VALUE;
 
       userBlog.innerHTML = data?.blog
-        ? `<a href=${data.blog}>${data.blog}</a>`
+        ? `<a href=${data.blog} class="link">${data.blog}</a>`
         : DEFAULT_VALUE;
 
       userCompany.innerHTML = data?.company
-        ? `<a href=${data.company}>${data.company}</a>`
+        ? `<a href=${data.company} class="link">${data.company}</a>`
         : DEFAULT_VALUE;
 
       userAvatar.src = data?.avatar_url;
