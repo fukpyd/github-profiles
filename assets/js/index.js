@@ -1,67 +1,51 @@
+import { THEME, DEFAULT_VALUE } from "./constants.js";
+
 const themeButton = document.querySelector(".theme-button");
 const themeType = document.querySelector(".theme-type");
-const currentTheme = localStorage.getItem("theme");
-const THEME = {
-  LIGHT: "LIGHT",
-  DARK: "DARK",
-};
 
-const userSearchBtn = document.querySelector(".search-button");
-const searchedUser = document.querySelector(".search-input");
+const currentTheme = localStorage.getItem("theme");
+
+const searchButton = document.querySelector(".search-button");
+const searchInput = document.querySelector(".search-input");
 const userAvatar = document.querySelector(".avatar");
-const userName = document.querySelector(".user-name");
-const userCreateDate = document.querySelector(".created-at");
-const userLogin = document.querySelector(".login");
-const userBio = document.querySelector(".bio");
-const userRepos = document.querySelector(".repos");
-const userFollowers = document.querySelector(".followers");
-const userFollowing = document.querySelector(".following");
-const userLocation = document.querySelector(".location");
+const name = document.querySelector(".user-name");
+const createDate = document.querySelector(".created-at");
+const login = document.querySelector(".login");
+const bio = document.querySelector(".bio");
+const repos = document.querySelector(".repos");
+const followers = document.querySelector(".followers");
+const following = document.querySelector(".following");
+const location = document.querySelector(".location");
 const userTwitter = document.querySelector(".twitter-username");
 const userBlog = document.querySelector(".blog");
 const userCompany = document.querySelector(".company");
+
 const form = document.querySelector(".search-form");
-const DEFAULT_VALUE = "Not Available";
+
 const resultWrapper = document.querySelector(".app-result");
 
-if (currentTheme === "dark") {
+if (currentTheme === "light") {
   document.documentElement.classList.toggle("dark");
 }
 
-themeButton.addEventListener("click", function () {
+function toggleTheme() {
   document.documentElement.classList.toggle("dark");
   const isCurrentDarkTheme = themeType.innerText === THEME.DARK;
   themeType.innerText = !isCurrentDarkTheme ? THEME.DARK : THEME.LIGHT;
 
-  let theme = THEME.DARK;
   if (document.documentElement.classList.contains("light")) {
-    theme = THEME.LIGHT;
+    localStorage.setItem("theme", THEME.LIGHT);
   } else {
-    theme = THEME.DARK;
+    localStorage.setItem("theme", THEME.DARK);
   }
+}
 
-  localStorage.setItem("theme", theme);
-});
+function getUserData() {
+  const query = searchInput.value;
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-});
-
-searchedUser.addEventListener("keyup", function (e) {
-  e.preventDefault();
-  if (e.keyCode === 13) {
-    userSearchBtn.click();
-  }
-});
-
-userSearchBtn.addEventListener("click", function () {
-  let searchingUser = searchedUser.value;
-
-  const getGithubData = async function (searchingUser) {
+  const getGithubData = async function (query) {
     try {
-      const response = await fetch(
-        `https://api.github.com/users/${searchingUser}`
-      );
+      const response = await fetch(`https://api.github.com/users/${query}`);
       if (!response.ok) {
         throw new Error(`User not found (${response.status})`);
       }
@@ -73,36 +57,36 @@ userSearchBtn.addEventListener("click", function () {
 
       const hiddenClassName = "hidden";
 
-      if (searchingUser === isLogin) {
+      if (query === isLogin) {
         resultWrapper.classList.contains(hiddenClassName) &&
           resultWrapper.classList.remove(hiddenClassName);
-        userLogin.textContent = data.login;
+        login.textContent = data.login;
         form.style.border = "none";
-        searchedUser.placeholder = "Search GitHub user login...";
+        searchInput.placeholder = "Search GitHub user login...";
       } else {
         !resultWrapper.classList.contains(hiddenClassName) &&
           resultWrapper.classList.add(hiddenClassName);
         form.style.border = "2px solid red";
-        searchedUser.placeholder = "User not found, please try again...";
+        searchInput.placeholder = "User not found, please try again...";
       }
 
-      userName.textContent = data?.name || DEFAULT_VALUE;
+      name.textContent = data?.name || DEFAULT_VALUE;
 
-      userCreateDate.textContent = data?.created_at || DEFAULT_VALUE;
-      const enrollDate = userCreateDate.textContent;
+      createDate.textContent = data?.created_at || DEFAULT_VALUE;
+      const enrollDate = createDate.textContent;
       const toConversionDate = new Date(enrollDate);
       const formattedEnrollDate = new Intl.DateTimeFormat("en-GB", {
         dateStyle: "medium",
       }).format(toConversionDate);
       console.log(`Joined ${formattedEnrollDate}`);
-      userCreateDate.textContent = `Joined ${formattedEnrollDate}`;
+      createDate.textContent = `Joined ${formattedEnrollDate}`;
 
-      userBio.textContent = data?.bio || "This profile has no bio";
+      bio.textContent = data?.bio || "This profile has no bio";
 
-      userRepos.textContent = data?.public_repos;
-      userFollowers.textContent = data?.followers;
-      userFollowing.textContent = data?.following;
-      userLocation.textContent = data?.location || DEFAULT_VALUE;
+      repos.textContent = data?.public_repos;
+      followers.textContent = data?.followers;
+      following.textContent = data?.following;
+      location.textContent = data?.location || DEFAULT_VALUE;
 
       userTwitter.innerHTML = data?.twitter_username
         ? `<a href=${data.twitter_username} class="link">${data.twitter_username}</a>`
@@ -118,7 +102,7 @@ userSearchBtn.addEventListener("click", function () {
 
       userAvatar.src = data?.avatar_url;
 
-      const arr = [userLogin, userCompany, userBlog, userTwitter, userLocation];
+      const arr = [login, userCompany, userBlog, userTwitter, location];
 
       const classForUnavailableData = "unavailable";
 
@@ -131,16 +115,31 @@ userSearchBtn.addEventListener("click", function () {
             el.classList.remove(classForUnavailableData);
         }
       });
-      searchedUser.value = "";
+      searchInput.value = "";
     } catch (err) {
       console.log("2");
       const hiddenClassName = "hidden";
       !resultWrapper.classList.contains(hiddenClassName) &&
         resultWrapper.classList.add(hiddenClassName);
       form.style.border = "2px solid red";
-      searchedUser.value = "";
-      searchedUser.placeholder = "User not found, please try again...";
+      searchInput.value = "";
+      searchInput.placeholder = "User not found, please try again...";
     }
   };
-  getGithubData(searchingUser);
+  getGithubData(query);
+}
+
+themeButton.addEventListener("click", toggleTheme);
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
 });
+
+searchInput.addEventListener("keyup", function (e) {
+  e.preventDefault();
+  if (e.keyCode === 13) {
+    getUserData();
+  }
+});
+
+searchButton.addEventListener("click", getUserData);
