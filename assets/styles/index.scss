@@ -1,79 +1,8 @@
-$--primary-bg: --primary-bg;
-$--secondary-bg: --secondary-bg;
-$--primary-font-color: --primary-font-color;
-$--secondary-font-color: --secondary-font-color;
-
-$primary-font: "Heebo", cursive;
-$font-size-base: clamp(1rem, 0.821rem + 0.476vw, 1.25rem);
-$font-size-sm: clamp(0.75rem, 0.571rem + 0.476vw, 1rem);
-
-$white: hsl(0, 0%, 100%);
-$blue: hsl(212, 91%, 40%);
-$light-gray: hsl(216, 12%, 84%);
-$gray: hsl(226, 13%, 45%);
-$steel-blue: hsl(224, 40%, 20%);
-$dark-gunmetal: hsl(221, 42%, 13%);
-$black: hsl(0, 0%, 0%);
-
-$base-padding: 1rem;
-
-$theme-map-dark: (
-  $--primary-bg: $dark-gunmetal,
-  $--secondary-bg: $steel-blue,
-  $--primary-font-color: $white,
-  $--secondary-font-color: $black,
-);
-
-$theme-map-light: (
-  $--primary-bg: $white,
-  $--secondary-bg: $light-gray,
-  $--primary-font-color: $steel-blue,
-  $--secondary-font-color: $white,
-);
-
-@mixin theme-colors($map: ()) {
-  @each $key, $value in $map {
-    #{$key}: $value;
-  }
-}
-
-@mixin css-var-styles($key, $value) {
-  #{$key}: var(#{$value});
-}
-
-$breakpoints: (
-  "mobile": 320px,
-  "tablet": 768px,
-  "desktop": 1024px,
-);
-
-@mixin small-mobile {
-  @media (max-width: map-get($breakpoints, "mobile")) {
-    // <= 320px    // od 0 do 320px
-    @content;
-  }
-}
-
-@mixin mobile {
-  @media (max-width: map-get($breakpoints, "tablet")) {
-    // <= 768px // od 0 do 768px
-    @content;
-  }
-}
-
-@mixin tablet-down {
-  @media (max-width: map-get($breakpoints, "desktop")) {
-    @content;
-    // <= 1024px // od 0 do 1024px
-  }
-}
-
-@mixin tablet {
-  @media (min-width: map-get($breakpoints, "tablet")) and (max-width: map-get($breakpoints, "desktop")) {
-    // >= 768px && <= 1024px
-    @content;
-  }
-}
+@import "partials/variables";
+@import "partials/colors";
+@import "partials/themes";
+@import "partials/mixins";
+@import "partials/breakpoints";
 
 *,
 ::before,
