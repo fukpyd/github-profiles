@@ -1,0 +1,3 @@
+@mixin css-var-styles($key, $value) {
+  #{$key}: var(#{$value});
+}

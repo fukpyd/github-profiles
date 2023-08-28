@@ -1,0 +1,26 @@
+@import "colors";
+
+@mixin theme-colors($map: ()) {
+  @each $key, $value in $map {
+    #{$key}: $value;
+  }
+}
+
+$--primary-bg: --primary-bg;
+$--secondary-bg: --secondary-bg;
+$--primary-font-color: --primary-font-color;
+$--secondary-font-color: --secondary-font-color;
+
+$theme-map-dark: (
+  $--primary-bg: $dark-gunmetal,
+  $--secondary-bg: $steel-blue,
+  $--primary-font-color: $white,
+  $--secondary-font-color: $black,
+);
+
+$theme-map-light: (
+  $--primary-bg: $white,
+  $--secondary-bg: $light-gray,
+  $--primary-font-color: $steel-blue,
+  $--secondary-font-color: $white,
+);
