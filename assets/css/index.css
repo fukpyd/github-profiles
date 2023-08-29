@@ -43,6 +43,11 @@ svg {
   min-width: 250px;
   max-width: 1024px;
 }
+@media (max-width: 1024px) {
+  .app-wrapper {
+    padding: 2rem 0;
+  }
+}
 
 .app-header {
   display: flex;
@@ -75,11 +80,16 @@ svg {
 .search-form {
   display: flex;
   flex: 1;
-  width: 100%;
   gap: 1rem;
-  padding: 1rem;
+  padding: 10px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   background-color: var(--secondary-bg);
+}
+@media (max-width: 1024px) {
+  .search-form {
+    padding: 5px;
+    gap: 0.1rem;
+  }
 }
 .search-form .search-label {
   display: flex;
@@ -128,6 +138,11 @@ svg {
   color: var(--primary-font-color);
   font-size: clamp(0.75rem, 0.571rem + 0.476vw, 1rem);
 }
+@media (max-width: 1024px) {
+  .app-result {
+    padding: 15px;
+  }
+}
 .app-result .user-short-overview {
   position: relative;
   display: flex;
@@ -142,13 +157,15 @@ svg {
 }
 .app-result .user-short-overview .avatar-wrapper {
   position: absolute;
-  inset: 0 0 0 -35%;
-  width: 25%;
+  inset: 0 0 0 -30%;
+  width: 23%;
+  min-width: 100px;
 }
 @media (max-width: 1024px) {
   .app-result .user-short-overview .avatar-wrapper {
     float: left;
     position: static;
+    padding-right: 10px;
   }
 }
 .app-result .user-short-overview .avatar-wrapper .avatar {
@@ -156,13 +173,13 @@ svg {
   border-radius: 50%;
 }
 .app-result .user-short-overview .overview-item {
-  width: 50%;
   padding-bottom: 0.5rem;
+  width: 50%;
 }
 @media (max-width: 1024px) {
-  .app-result .user-short-overview {
-    display: inline-block;
+  .app-result .user-short-overview .overview-item {
     padding-left: 10px;
+    width: 100%;
   }
 }
 .app-result .user-short-overview .user-name {
@@ -175,12 +192,10 @@ svg {
   }
 }
 .app-result .user-short-overview .login {
-  width: 100%;
   color: hsl(212, 91%, 40%);
 }
 @media (max-width: 1024px) {
   .app-result .user-short-overview .login {
-    width: 50%;
     order: 2;
   }
 }
@@ -191,6 +206,7 @@ svg {
   .app-result .user-short-overview .created-at {
     text-align: left;
     order: 3;
+    width: 100%;
   }
 }
 .app-result .user-short-overview .bio {
@@ -227,12 +243,18 @@ svg {
 @media (max-width: 768px) {
   .app-result .contact-details {
     flex-direction: column;
+    width: 100%;
   }
 }
 .app-result .contact-details .contact-detail {
   width: 50%;
   padding: 5px 15px 5px 5px;
-  word-break: break-all;
+  word-break: word-wrap;
+}
+@media (max-width: 768px) {
+  .app-result .contact-details .contact-detail {
+    width: 100%;
+  }
 }
 .app-result .contact-details .contact-detail span > .link {
   text-decoration: none;

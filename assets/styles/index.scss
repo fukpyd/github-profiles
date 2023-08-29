@@ -42,6 +42,10 @@ svg {
   width: 50vw;
   min-width: 250px;
   max-width: 1024px;
+
+  @include tablet-down {
+    padding: 2rem 0;
+  }
 }
 
 .app-header {
@@ -78,11 +82,15 @@ svg {
 .search-form {
   display: flex;
   flex: 1;
-  width: 100%;
   gap: 1rem;
-  padding: $base-padding;
+  padding: 10px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   @include css-var-styles(background-color, $--secondary-bg);
+
+  @include tablet-down {
+    padding: 5px;
+    gap: 0.1rem;
+  }
 
   .search-label {
     display: flex;
@@ -138,6 +146,10 @@ svg {
   @include css-var-styles(color, $--primary-font-color);
   font-size: $font-size-sm;
 
+  @include tablet-down {
+    padding: 15px;
+  }
+
   .user-short-overview {
     position: relative;
     display: flex;
@@ -146,17 +158,21 @@ svg {
 
     @include tablet-down {
       display: block;
+      // display: flex;
+      // flex-direction: column;
       line-height: 25px;
     }
 
     .avatar-wrapper {
       position: absolute;
-      inset: 0 0 0 -35%;
-      width: 25%;
+      inset: 0 0 0 -30%;
+      width: 23%;
+      min-width: 100px;
 
       @include tablet-down {
         float: left;
         position: static;
+        padding-right: 10px;
       }
 
       .avatar {
@@ -166,13 +182,13 @@ svg {
     }
 
     .overview-item {
-      width: 50%;
       padding-bottom: 0.5rem;
-    }
+      width: 50%;
 
-    @include tablet-down {
-      display: inline-block;
-      padding-left: 10px;
+      @include tablet-down {
+        padding-left: 10px;
+        width: 100%;
+      }
     }
 
     .user-name {
@@ -185,11 +201,9 @@ svg {
     }
 
     .login {
-      width: 100%;
       color: $blue;
 
       @include tablet-down {
-        width: 50%;
         order: 2;
       }
     }
@@ -200,6 +214,7 @@ svg {
       @include tablet-down {
         text-align: left;
         order: 3;
+        width: 100%;
       }
     }
 
@@ -240,12 +255,17 @@ svg {
 
     @include mobile {
       flex-direction: column;
+      width: 100%;
     }
 
     .contact-detail {
       width: 50%;
       padding: 5px 15px 5px 5px;
-      word-break: break-all;
+      word-break: word-wrap;
+
+      @include mobile {
+        width: 100%;
+      }
 
       span > .link {
         text-decoration: none;
