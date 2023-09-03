@@ -268,3 +268,7 @@ svg {
 .hidden {
   display: none;
 }
+
+.invalid {
+  border: 2px solid hsl(0, 100%, 50%);
+}
